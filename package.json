@@ -1,0 +1,51 @@
+{
+  "name": "studiostaff-win",
+  "version": "1.0.0",
+  "description": "STUDIOSTAFF — Native Windows Staff Operating System for House of EXP",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build": "electron-builder --win",
+    "build-win": "electron-builder --win --x64"
+  },
+  "build": {
+    "appId": "com.houseofexp.studiostaff",
+    "productName": "STUDIOSTAFF",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "server.js",
+      "preload.js",
+      "public/**/*",
+      "favico-exp.png",
+      "favico-exp.svg",
+      "!public/**/*.bak",
+      "!public/.DS_Store"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "extraMetadata": {
+      "main": "main.js"
+    }
+  },
+  "dependencies": {
+    "express": "^4.18.0",
+    "http-proxy-middleware": "^3.0.0"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  }
+}

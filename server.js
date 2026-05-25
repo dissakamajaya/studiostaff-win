@@ -1,5 +1,5 @@
 // ============================================================
-// STUDIOSTAFF macOS — Express Server
+// STUDIOSTAFF Windows — Express Server
 // ============================================================
 // Serves the STUDIOSTAFF static frontend and proxies all API
 // calls to the live Vercel backend (studiostaff.houseofexp.com).
