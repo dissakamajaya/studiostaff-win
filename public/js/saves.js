@@ -1130,11 +1130,11 @@ function markPaid(id){
       type:'Income',
       category:inv.category||'Studio Booking',
       division:inv.category||'Studio',
-      bank:'bca', // default; user can edit
+      bank:(prompt('Which account received payment? (bca/jenius/nah)','bca')||'bca').toLowerCase(),
       date:new Date().toISOString().slice(0,10),
       createdAt:new Date().toISOString()
     });
-    const acc=DB.bankAccounts.find(a=>a.id==='bca');if(acc)acc.balance+=inv.total;
+    const acc=DB.bankAccounts.find(a=>a.id===bank);if(acc)acc.balance+=inv.total;
     addActivityLog('Invoice','Paid',num,'invoice');saveDBFn();renderInvoices();renderDash();
   }
 }

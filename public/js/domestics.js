@@ -280,14 +280,14 @@ function markCleaningPaid(id){
     id:txId,type:'Expense',
     description:`General Cleaning — ${cl.cleaner} (${cl.date})`,
     amount:cl.amount,category:'General Cleaning',
-    bank:'bca',division:'Domestic',
+    bank:(prompt('Which account paid for cleaning? (bca/jenius/nah)','bca')||'bca').toLowerCase(),division:'Domestic',
     date:cl.date,
     notes:`Auto-logged from cleaning record #${cl.id}`,
     createdAt:now,
   });
   cl.transactionId=txId;
   DB.nextId.tx=(DB.nextId.tx||1)+1;
-  const clAcc=DB.bankAccounts.find(a=>a.id==='bca');if(clAcc)clAcc.balance-=cl.amount;
+  const clAcc=DB.bankAccounts.find(a=>a.id===bank);if(clAcc)clAcc.balance-=cl.amount;
   saveDBFn();renderDomestics();
 }
 

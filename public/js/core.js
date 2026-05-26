@@ -403,9 +403,11 @@ async function _doSave(){
                 });
               }
             });
+            ['bankAccounts','settings','galonStatus','nextId'].forEach(function(col){if(localEdits[col]!==undefined)DB[col]=localEdits[col];});
             if (typeof renderSidebar==='function')renderSidebar();
             if (typeof renderPage==='function')renderPage();
             showToast('Workspace merged with latest data from server. Your local edits have been re-applied.','info');
+            if(typeof saveDBFn==='function'){_saveRetryCount=0;_doSave();}
           }
         }
       }catch(e){}

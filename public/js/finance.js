@@ -164,7 +164,7 @@ function renderFinance(){
   const wrap=document.getElementById('finance-tab-content');
   if(!wrap)return;
 
-  const income=DB.transactions.filter(t=>t.type==='Income').reduce((s,t)=>s+t.amount,0)+DB.invoices.filter(i=>i.type==='invoice'&&i.status==='Paid').reduce((s,i)=>s+i.total,0);
+  const income=DB.transactions.filter(t=>t.type==='Income').reduce((s,t)=>s+t.amount,0);
   const expense=DB.transactions.filter(t=>t.type==='Expense').reduce((s,t)=>s+t.amount,0);
 
   if(finTab===0){
@@ -482,6 +482,7 @@ function markZakatPaid(id){
   });
   z.transactionId=txId;
   DB.nextId.tx=(DB.nextId.tx||1)+1;
+  const zAcc=DB.bankAccounts.find(a=>a.id===z.account);if(zAcc)zAcc.balance-=z.zakatAmount;
   addFinanceLog('Paid','Zakat',`Period ${z.period} — ${z.label} (${z.penerima||'—'})`,z.zakatAmount);
   saveDBFn();
   renderPage(_currentPage);
