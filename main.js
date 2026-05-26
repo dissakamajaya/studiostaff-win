@@ -164,7 +164,7 @@ function createWindow() {
     show: false,
   });
 
-  mainWindow.loadURL(`http://127.0.0.1:${actualPort}`);
+  mainWindow.loadURL('https://studiostaff.houseofexp.com');
 
   mainWindow.once('ready-to-show', () => {
     if (state.isMaximized) {
