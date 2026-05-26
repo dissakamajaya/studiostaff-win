@@ -1,6 +1,6 @@
 {
   "name": "studiostaff-win",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "STUDIOSTAFF — Native Windows Staff Operating System for House of EXP",
   "main": "main.js",
   "scripts": {
